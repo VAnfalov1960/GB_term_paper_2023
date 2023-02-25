@@ -3,7 +3,7 @@ export default {
     subdirectory: "/gb2-5/",
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: "gb_курсовая",
+        title: "Шаблон почти чистый",
         htmlAttrs: {
             lang: "ru",
         },
