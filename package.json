@@ -1,23 +1,60 @@
 {
-  "name": "gb",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
-  },
-  "dependencies": {
-    "bootstrap": "^5.2.3",
-    "core-js": "^3.25.3",
-    "cross-env": "^7.0.3",
-    "nuxt": "^2.15.8",
-    "vue": "^2.7.10",
-    "vue-server-renderer": "^2.7.10",
-    "vue-template-compiler": "^2.7.10"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  }
+    "name": "gb",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
+    },
+    "dependencies": {
+        "@inotom/vue-go-top": "^1.1.0",
+        "@nuxtjs/axios": "^5.5.4",
+        "axios": "^0.21.1",
+        "better-scroll": "^2.4.2",
+        "bootstrap-vue": "^2.21.2",
+        "firebase": "^8.6.8",
+        "js-cookie": "^2.2.1",
+        "jspdf": "^2.5.1",
+        "npx": "^10.2.2",
+        "nuxt": "^2.15.7",
+        "nuxt-i18n": "^6.3.0",
+        "nuxt-pdf": "^2.0.1",
+        "nuxt-responsive-loader": "^2.0.1",
+        "swiper": "5.4.5",
+        "v-video-embed": "^1.0.8",
+        "vee-validate": "^3.1.0",
+        "vue": "^2.6.11",
+        "vue-awesome-swiper": "4.1.1",
+        "vue-gallery": "^2.0.1",
+        "vue-i18n": "^8.15.0",
+        "vue-image-lightbox": "^6.4.0",
+        "vue-image-magnifier": "^0.2.1",
+        "vue-infinite-loading": "^2.4.4",
+        "vue-instagram": "^2.0.1",
+        "vue-lazyload": "^1.3.3",
+        "vue-lazytube": "^1.1.1",
+        "vue-masonry": "^0.11.8",
+        "vue-paypal-checkout": "^3.2.0",
+        "vue-pdf-app": "^2.1.0",
+        "vue-product-zoomer": "^3.0.0",
+        "vue-scrollto": "^2.17.1",
+        "vue-server-renderer": "^2.6.14",
+        "vue-slider-component": "3.2.12",
+        "vue-template-compiler": "^2.6.11",
+        "vue-youtube-embed": "^2.2.2",
+        "vue2-animate": "^2.1.2",
+        "vue2-filters": "^0.7.2",
+        "vuejs-paginate": "^2.1.0",
+        "vuejs-timeless-clock": "^1.0.2",
+        "vuex": "^3.1.1",
+        "vuex-persistedstate": "^2.5.4"
+    },
+    "devDependencies": {
+        "node-sass": "^4.12.0",
+        "nodemon": "^2.0.7",
+        "sass-loader": "^7.1.0",
+        "vue-particles": "^1.0.9"
+    }
 }

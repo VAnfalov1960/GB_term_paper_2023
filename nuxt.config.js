@@ -1,6 +1,6 @@
 export default {
     ssr: false,
-    subdirectory: "/gb1-3/",
+    subdirectory: "/gb2-1/",
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
         title: "gb_курсовая",
@@ -15,24 +15,46 @@ export default {
         link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
     router: {
-        base: "/gb1-3/",
+        base: "/gb2-1/",
     },
-
-    // Global CSS: https://go.nuxtjs.dev/config-css
-    css: ["@/node_modules/bootstrap/dist/css/bootstrap.min.css"],
-
-    // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [],
-
-    // Auto import components: https://go.nuxtjs.dev/config-components
-    components: true,
-
-    // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-    buildModules: [],
-
-    // Modules: https://go.nuxtjs.dev/config-modules
-    modules: [],
-
-    // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
+    loading: { color: "#ff4c3b", throttle: 200, height: "3px", css: true },
+    /*
+     ** Global CSS
+     */
+    css: ["@/assets/scss/app.scss"],
+    /*
+     ** Plugins to load before mounting the App
+     */
+    plugins: [
+        { src: "~/plugins/plugin.js", ssr: false },
+        { src: "~/plugins/localStorage.js", ssr: false },
+    ],
+    /*
+     ** Nuxt.js modules
+     */
+    modules: [
+        // Doc: https://axios.nuxtjs.org/usage
+        "bootstrap-vue/nuxt",
+        "@nuxtjs/axios",
+        "vue-scrollto/nuxt",
+    ],
+    /*
+     ** Axios module configuration
+     ** See https://axios.nuxtjs.org/options
+     */
+    axios: {},
+    generate: {
+        fallback: true,
+    },
+    /*
+     ** Build configuration
+     */
+    build: {
+        transpile: ["vee-validate/dist/rules"],
+        /*
+         ** You can extend webpack config here
+         */
+        extend(config, ctx) {},
+        babel: { compact: true },
+    },
 };
