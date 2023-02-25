@@ -1,21 +1,31 @@
 <template>
-  <nav>
-    <div>
-      <ul>
-        <li>
-          <nuxt-link to="/"> Главная </nuxt-link>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" >
+          <nuxt-link class="nav-link" to="/">
+            Главная
+          </nuxt-link>
         </li>
-        <li>
-          <nuxt-link to="/about"> О нас </nuxt-link>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" to="/about">
+            О нас
+          </nuxt-link>
         </li>
-        <li>
-          <nuxt-link to="/courses"> Курсы </nuxt-link>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" to="/courses">
+            Курсы
+          </nuxt-link>
         </li>
-        <li>
-          <nuxt-link to="/contact"> Контакты </nuxt-link>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" to="/contact">
+            Контакты
+          </nuxt-link>
         </li>
-        <li>
-          <nuxt-link to="/login"> Авторизация </nuxt-link>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" to="/login">
+            Авторизация
+          </nuxt-link>
         </li>
       </ul>
     </div>
@@ -23,5 +33,7 @@
 </template>
 
 <script>
-export default {};
+  export default {
+  }
 </script>
+
