@@ -17,15 +17,14 @@
   </div>
 </template>
 <script>
-  import Nav from "../widgets/navbar";
-  export default {
-    data() {
-      return {
+import Nav from "../widgets/navbar";
 
-      };
-    },
-    components: {
-      Nav
-    }
-  };
+export default {
+  data() {
+    return {};
+  },
+  components: {
+    Nav
+  }
+};
 </script>
