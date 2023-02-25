@@ -1,6 +1,8 @@
 {
-    "name": "gb",
+    "name": "geekbrains-courses",
     "version": "1.0.0",
+    "description": "Курсовая работа Geek Brains",
+    "author": "Анфалов В.И. и другие",
     "private": true,
     "scripts": {
         "dev": "nuxt",
