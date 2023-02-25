@@ -1,5 +1,5 @@
 <template>
-  <section>
-    <h1>Главная</h1>
-</section>
+  <div>
+    <h1>Стартовая страница</h1>
+  </div>
 </template>

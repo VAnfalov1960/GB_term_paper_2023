@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/widgets/navbar";
 export default {
   components: {
-    Navbar,
-  },
+    Navbar
+  }
 };
 </script>
