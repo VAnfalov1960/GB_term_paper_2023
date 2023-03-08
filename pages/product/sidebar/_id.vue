@@ -80,7 +80,6 @@
                             style="color: red"
                           >Свободных мест нет</p>
                         </div>
-
                         <div class="product-description border-product">
                           <div v-if="(getDetail.stock > 0)" class="qty-box">
                             <h4 class="product-title">
@@ -137,29 +136,9 @@
                           <h3 v-if="getDetail.sale">{{ discountedPrice(getDetail) * counter}} руб.</h3>
                           <h3 v-else>{{ getDetail.price * counter}} руб.</h3>
                         </div>
-
                         <br v-if="(getDetail.price ) * counter == 0" />
                         <br v-if="(getDetail.price ) * counter > 0" />
                         <br v-if="(getDetail.price ) * counter > 0" />
-                        <!-- <div class="product-buttons">
-                            <nuxt-link :to="{ path: '/page/account/cart'}">
-                              <a
-                                v-if="(getDetail.stock > 0)"
-                                class="btn btn-solid mr-3"
-                                style="border: 1px solid white; border-radius: 40px; width: 38%; padding: 15px"
-                                title="Добавить в корзину"
-                                :disabled="counter > getDetail.stock"
-                              >В корзину</a>
-                            </nuxt-link>
-                            <a
-                              v-if="(getDetail.stock > 0)"
-                              class="btn btn-solid mr-3"
-                              style="border: 1px solid white; border-radius: 40px; width: 38%; padding: 15px"
-                              title="Купить"
-                              :disabled="counter > getDetail.stock"
-                            >Оплатить
-                          </a>
-                        </div>-->
                         <div class="product-buttons">
                           <nuxt-link to="#">
                             <a
@@ -186,19 +165,14 @@
 </template>
 <script>
 import Vue from "vue";
-import Embed from "v-video-embed";
 import { mapState, mapGetters } from "vuex";
 import Footer from "../../../components/footer/footer";
 import Breadcrumbs from "../../../components/widgets/breadcrumbs";
-
-Vue.use(Embed);
-
 export default {
   components: {
     Footer,
     Breadcrumbs
   },
-
   data() {
     return {
       counter: 0,
@@ -207,27 +181,10 @@ export default {
       qty: "",
       size: [],
       productTYpe: "",
-      productId: "",
-      swiperOption: {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        freeMode: true
-      },
-      swiperOption1: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        freeMode: true,
-        centeredSlides: false
-      }
+      productId: ""
     };
   },
   computed: {
-    // ...mapState({
-    //   currency: state => state.products.currency
-    // }),
-    // ...mapGetters({
-    //   curr: "products/changeCurrency"
-    // }),
     getDetail: function() {
       return this.$store.getters["products/getProductById"](
         this.$route.params.id
@@ -239,25 +196,10 @@ export default {
   },
   mounted() {},
   methods: {
-    handleClick(event) {
-      this.$refs["lazyVideo"][event]();
-    },
-    priceCurrency: function() {
-      this.$store.dispatch("products/changeCurrency");
-    },
-    addToWishlist: function(product) {
-      this.$store.dispatch("products/addToWishlist", product);
-    },
     discountedPrice(product) {
       const price = product.price - (product.price * product.discount) / 100;
       return price;
     },
-    // Related Products display
-    relatedProducts() {
-      this.productTYpe = this.getDetail.type;
-      this.productId = this.getDetail.id;
-    },
-
     increment() {
       this.counter++;
     },
@@ -267,9 +209,6 @@ export default {
 
     getImgUrl(path) {
       return require("@/assets/images/" + path);
-    },
-    slideTo(id) {
-      this.swiper.slideTo(id, 1000, false);
     }
   }
 };
