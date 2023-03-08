@@ -1,6 +1,6 @@
 export default {
     ssr: false,
-    subdirectory: "/gb3-1/",
+    subdirectory: "/gb3-2/",
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
         title: "gb_курсовая",
@@ -15,7 +15,7 @@ export default {
         link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
     router: {
-        base: "/gb3-1/",
+        base: "/gb3-2/",
     },
     loading: { color: "#ff4c3b", throttle: 200, height: "3px", css: true },
     /*
