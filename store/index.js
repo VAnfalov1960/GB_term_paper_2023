@@ -1,8 +1,9 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import layout from './modules/layout'
-import menu from './modules/menu';
-import products from './modules/products';
+import Vue from "vue";
+import Vuex from "vuex";
+import layout from "./modules/layout";
+import menu from "./modules/menu";
+import products from "./modules/products";
+import cart from "./modules/cart";
 
 Vue.use(Vuex);
 const createStore = () => {
@@ -10,7 +11,8 @@ const createStore = () => {
         modules: {
             layout,
             menu,
-            products
+            products,
+            cart,
         },
     });
 };

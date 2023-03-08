@@ -60,6 +60,7 @@
                           <del>{{ getDetail.price }} руб.</del>
                           - cкидка сайта {{ getDetail.discount }}%
                         </h4>
+                        <!-- <br v-if="getDetail.discount > 0" /> -->
                         <div>
                           <h4
                             v-if="getDetail.promo > 0"
@@ -76,7 +77,8 @@
                               v-if="(getDetail.brand == 'Инфоурок')"
                             >Все вопросы к администратору этого сайта через контактную форму или по телефону.</h6>
                           </nuxt-link>
-                          <br v-if="(getDetail.price * counter ) == 0" />
+                          <br />
+                          <!-- <br v-if="(getDetail.price * counter ) == 0" /> -->
                         </div>
 
                         <div class="pro_inventory" v-if="getDetail.allstudents || getDetail.stock">
@@ -185,15 +187,24 @@
                         <br v-if="(getDetail.price * counter ) > 0" />
                         <br v-if="(getDetail.price * counter ) > 0" />
                         <div class="product-buttons">
-                          <nuxt-link to="#">
+                          <nuxt-link :to="{ path: '/page/account/cart'}">
                             <a
                               v-if="(getDetail.stock > 0)"
                               class="btn btn-solid mr-3"
                               style="border: 1px solid white; border-radius: 40px; width: 38%; padding: 15px"
                               title="Добавить в корзину"
+                              @click="addToCart(getDetail, counter)"
                               :disabled="counter > getDetail.stock"
-                            >Заказать</a>
+                            >В корзину</a>
                           </nuxt-link>
+                          <a
+                            v-if="(getDetail.stock > 0)"
+                            class="btn btn-solid mr-3"
+                            style="border: 1px solid white; border-radius: 40px; width: 38%; padding: 15px"
+                            title="Купить"
+                            @click="buyNow(getDetail, counter)"
+                            :disabled="counter > getDetail.stock"
+                          >Оплатить</a>
                         </div>
                       </div>
                     </div>
@@ -205,6 +216,7 @@
                   <div class="col-sm-12 col-lg-12">
                     <b-tabs card>
                       <b-tab title="Описание" active>
+                        <!-- <h4>{{getDetail.title}}</h4> -->
                         <h4 v-if="getDetail.title3">{{getDetail.title3}}</h4>
                         <br v-if="getDetail.title3" />
                         <p v-if="getDetail.description1">{{getDetail.description1}}</p>
@@ -281,6 +293,36 @@
                         <p v-if="getDetail.description35">{{getDetail.description35}}</p>
                         <br v-if="getDetail.description35" />
                         <p v-if="getDetail.description36">{{getDetail.description36}}</p>
+                        <!-- <div class="single-product-tables">
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <td>111</td>
+                                  <td>222</td>
+                                </tr>5
+                                <tr>
+                                  <td>333</td>
+                                  <td>444</td>
+                                </tr>
+                                <tr>
+                                  <td>555</td>
+                                  <td>666</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <td>Длина</td>
+                                  <td>50 Дюймов</td>
+                                </tr>
+                                <tr>
+                                  <td>Размер</td>
+                                  <td>S, M, L .XXL</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>-->
                       </b-tab>
                       <b-tab title="Видео">
                         <b-card-text>
@@ -294,6 +336,30 @@
                               scrolling="no"
                               allowfullscreen
                             ></iframe>
+                            <!-- Youtube Embed -->
+                            <!-- Легко встраивайте проигрыватель YouTube или Vimeo и лениво загружайте видео, чтобы сэкономить ресурсы и уменьшить первоначальный размер загрузки. Полезно, когда важна производительность и размер страницы или для сайтов с большим количеством встроенных видео. -->
+                            <!-- https://github.com/seeratawan01/vue-lazytube -->
+                            <!-- РАБОТАЕТ!!! ЗАДАЮТСЯ РАЗМЕРЫ, РАБОТАЮТ КНОПКИ!!! -->
+                            <!-- <LazyYoutube
+                              v-if="getDetail.video1src"
+                              ref="lazyVideo"
+                              maxWidth="540px"
+                              :src="getDetail.video1src"
+                            />
+                            <br />
+                            <button @click="handleClick('playVideo')">Play</button>
+                            <button @click="handleClick('stopVideo')">Stop</button>
+                            <button @click="handleClick('pauseVideo')">Pause</button>
+                            <button @click="handleClick('resetView')">Reset</button>
+                            <br />
+                            <br />-->
+
+                            <!-- Vimeo Embed -->
+                            <!-- ВСЁ РАБОТАЕТ!!! -->
+                            <!-- <LazyVimeo src="https://player.vimeo.com/video/64654583" /> -->
+
+                            <!-- НИЖЕ РАЗМЕРЫ ОКНА ПРОИГРЫВАТЕЛЯ НЕ ИЗМЕНЯЮТСЯ, НАЙТИ ОШИБКУ!!! -->
+                            <!-- ПРОИГРЫВАТЕЛЬ ЗАНИМАЕТ 100%!!! -->
                             <h4 v-if="getDetail.title1src">{{ getDetail.title1src }}</h4>
                             <video-embed
                               v-if="getDetail.video1src"
@@ -533,6 +599,8 @@
       </div>
       <br />
       <br />
+      <!-- Только педагогам скидка добавить проерку на Инфоурок -->
+      <!-- Ссылки imagepath внизу -->
       <section v-if="getDetail.brand == 'Инфоурок'" class="section-b-space">
         <br />
         <br />
@@ -557,6 +625,11 @@
         :productTYpe="productTYpe"
         :productId="productId"
       />
+      <!-- Размер одежды... -->
+      <!-- <b-modal id="modal-1" size="md" centered hide-footer>
+        <template v-slot:modal-title>{{getDetail.title}}</template>
+        <img src="../../../assets/images/size-chart.jpg" alt="size-chart" class="img-fluid" />
+      </b-modal>-->
     </section>
     <Footer />
   </div>
@@ -610,6 +683,12 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      currency: state => state.products.currency
+    }),
+    ...mapGetters({
+      curr: "products/changeCurrency"
+    }),
     getDetail: function() {
       return this.$store.getters["products/getProductById"](
         this.$route.params.id
@@ -626,14 +705,30 @@ export default {
     handleClick(event) {
       this.$refs["lazyVideo"][event]();
     },
+    priceCurrency: function() {
+      this.$store.dispatch("products/changeCurrency");
+    },
     discountedPrice(product) {
       const price = product.price - (product.price * product.discount) / 100;
       return price;
     },
+    // Related Products display
     relatedProducts() {
       this.productTYpe = this.getDetail.type;
       this.productId = this.getDetail.id;
     },
+
+    // add to cart
+    addToCart: function(product, qty) {
+      product.quantity = qty || 1;
+      this.$store.dispatch("cart/addToCart", product);
+    },
+    buyNow: function(product, qty) {
+      product.quantity = qty || 1;
+      this.$store.dispatch("cart/addToCart", product);
+      this.$router.push("/page/account/checkout");
+    },
+    // Item Count
     increment() {
       this.counter++;
     },
