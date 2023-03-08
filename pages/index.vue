@@ -4,6 +4,7 @@
     <CollectionBanner />
     <br />
     <Slider />
+    <p>Почти чистый шаблон ветка gb2-5 commit 50bb86f96b3fe88df3739513726cf5905f986ba1</p>
     <Footer />
   </div>
 </template>

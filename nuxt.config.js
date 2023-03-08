@@ -1,7 +1,6 @@
 export default {
     ssr: false,
-    subdirectory: "/gb2-5/",
-    // Global page headers: https://go.nuxtjs.dev/config-head
+    subdirectory: "/gb3-5/",
     head: {
         title: "Шаблон почти чистый",
         htmlAttrs: {
@@ -15,7 +14,7 @@ export default {
         link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
     router: {
-        base: "/gb2-5/",
+        base: "/gb3-5/",
     },
     loading: { color: "#ff4c3b", throttle: 200, height: "3px", css: true },
     /*
@@ -32,12 +31,7 @@ export default {
     /*
      ** Nuxt.js modules
      */
-    modules: [
-        // Doc: https://axios.nuxtjs.org/usage
-        "bootstrap-vue/nuxt",
-        "@nuxtjs/axios",
-        "vue-scrollto/nuxt",
-    ],
+    modules: ["bootstrap-vue/nuxt", "@nuxtjs/axios", "vue-scrollto/nuxt"],
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
