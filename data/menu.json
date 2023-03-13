@@ -20,7 +20,28 @@
                 { "path": "/page/about", "title": "О нас", "type": "link" },
                 { "path": "/page/contact", "title": "Контакты", "type": "link" }
             ]
+        },
+        {
+            "title": "Магазин",
+            "type": "sub",
+            "active": false,
+            "children": [{
+                    "title": "Авторизация",
+                    "type": "sub",
+                    "active": false,
+                    "children": [
+                        { "path": "/page/account/dashboard", "title": "Приборная панель", "type": "link" },
+                        { "path": "/page/account/profile", "title": "Профиль", "type": "link" },
+                        { "path": "/page/account/register", "title": "Регистрация", "type": "link" },
+                        { "path": "/page/account/login", "title": "Авторизоваться", "type": "link" },
+                        { "path": "/page/account/login-firebase", "title": "Войти в Систему с помощью Firebase", "type": "link" },
+                        { "path": "/page/account/forget-password", "title": "Забыли пароль", "type": "link" }
+                    ]
+                },
+                { "path": "/page/account/cart", "title": "Корзина", "type": "link" },
+                { "path": "/page/account/checkout", "title": "Оплата", "type": "link" },
+                { "path": "/page/404", "title": "404", "type": "link" }
+            ]
         }
-
     ]
 }

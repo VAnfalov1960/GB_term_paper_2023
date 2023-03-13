@@ -57,14 +57,6 @@
                               </div>
                               <div class="collection-view">
                                 <!-- Кнопки сортировки в одну колонку или таблицей -->
-                                <ul>
-                                  <li @click="gridView()">
-                                    <i class="fa fa-th grid-layout-view"></i>
-                                  </li>
-                                  <li @click="listView()">
-                                    <i class="fa fa-list-ul list-layout-view"></i>
-                                  </li>
-                                </ul>
                               </div>
                               <div class="collection-grid-view">
                                 <ul>
@@ -112,7 +104,7 @@
                         </div>
                       </div>
                       <!-- Разобраться как работает. Где ошибки??? -->
-                        <div class="product-wrapper-grid" :class="{'list-view' :listview == true}">
+                      <div class="product-wrapper-grid" :class="{'list-view' :listview == true}">
                         <div class="row">
                           <div class="col-sm-12">
                             <div
@@ -139,10 +131,7 @@
                             v-show="setPaginate(index)"
                           >
                             <div class="product-box" style="width: 100%">
-                              <productBox1
-                                :product="product"
-                                :index="index"
-                              />
+                              <productBox1 :product="product" :index="index" />
                             </div>
                           </div>
                         </div>
@@ -217,161 +206,161 @@
   </div>
 </template>
 <script>
-  import { mapGetters } from "vuex";
-  import productBox1 from "../../../components/product-box/product-box1";
-  import Footer from "../../../components/footer/footer";
-  import Breadcrumbs from "../../../components/widgets/breadcrumbs";
-  import sidebar from "../../../components/widgets/collection-sidebar";
-  export default {
-    components: {
-      Footer,
-      Breadcrumbs,
-      productBox1,
-      sidebar
-    },
-    data() {
-      return {
-        bannerimagepath: require("@/assets/images/side-banner.png"),
-        col2: false,
-        col3: false,
-        col4: true,
-        col6: false,
-        listview: false,
-        priceArray: [],
-        allfilters: [],
-        items: [],
-        current: 1,
-        paginate: 12,
-        paginateRange: 3,
-        pages: [],
-        paginates: "",
-        swiperOption: {
-          loop: false,
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-          }
+import { mapGetters } from "vuex";
+import productBox1 from "../../../components/product-box/product-box1";
+import Footer from "../../../components/footer/footer";
+import Breadcrumbs from "../../../components/widgets/breadcrumbs";
+import sidebar from "../../../components/widgets/collection-sidebar";
+export default {
+  components: {
+    Footer,
+    Breadcrumbs,
+    productBox1,
+    sidebar
+  },
+  data() {
+    return {
+      bannerimagepath: require("@/assets/images/side-banner.png"),
+      col2: false,
+      col3: false,
+      col4: true,
+      col6: false,
+      listview: false,
+      priceArray: [],
+      allfilters: [],
+      items: [],
+      current: 1,
+      paginate: 12,
+      paginateRange: 3,
+      pages: [],
+      paginates: "",
+      swiperOption: {
+        loop: false,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
         }
-      };
+      }
+    };
+  },
+  computed: {
+    ...mapGetters({
+      filterProduct: "filter/filterProducts",
+      tags: "filter/setTags",
+      curr: "products/changeCurrency"
+    })
+  },
+  mounted() {
+    this.updatePaginate(1);
+  },
+  methods: {
+    onChangeSort(event) {
+      this.$store.dispatch("filter/sortProducts", event.target.value);
     },
-    computed: {
-      ...mapGetters({
-        filterProduct: "filter/filterProducts",
-        tags: "filter/setTags",
-        curr: "products/changeCurrency"
-      })
+    gridView() {
+      this.col4 = true;
+      this.col2 = false;
+      this.col3 = false;
+      this.col6 = false;
+      this.listview = false;
     },
-    mounted() {
+    listView() {
+      this.listview = true;
+      this.col2 = false;
+      this.col3 = false;
+      this.col4 = false;
+      this.col6 = false;
+    },
+    grid2() {
+      this.col2 = true;
+      this.col3 = false;
+      this.col4 = false;
+      this.col6 = false;
+      this.listview = false;
+    },
+    grid3() {
+      this.col3 = true;
+      this.col2 = false;
+      this.col4 = false;
+      this.col6 = false;
+      this.listview = false;
+    },
+    grid4() {
+      this.col4 = true;
+      this.col2 = false;
+      this.col3 = false;
+      this.col6 = false;
+      this.listview = false;
+    },
+    grid6() {
+      this.col6 = true;
+      this.col2 = false;
+      this.col3 = false;
+      this.col4 = false;
+      this.listview = false;
+    },
+    removeTags(val) {
+      this.allfilters.splice(this.allfilters.indexOf(val), 1);
+    },
+    removeAllTags() {
+      this.allfilters.splice(0, this.allfilters.length);
+    },
+    getCategoryFilter() {
+      this.updatePaginate(1);
+      this.$store.dispatch("filter/getCategoryFilter", this.$route.params.id);
+    },
+    allfilter(selectedVal) {
+      this.allfilters = selectedVal;
+      this.$store.dispatch("filter/setTags", selectedVal);
+      this.getPaginate();
       this.updatePaginate(1);
     },
-    methods: {
-      onChangeSort(event) {
-        this.$store.dispatch("filter/sortProducts", event.target.value);
-      },
-      gridView() {
-        this.col4 = true;
-        this.col2 = false;
-        this.col3 = false;
-        this.col6 = false;
-        this.listview = false;
-      },
-      listView() {
-        this.listview = true;
-        this.col2 = false;
-        this.col3 = false;
-        this.col4 = false;
-        this.col6 = false;
-      },
-      grid2() {
-        this.col2 = true;
-        this.col3 = false;
-        this.col4 = false;
-        this.col6 = false;
-        this.listview = false;
-      },
-      grid3() {
-        this.col3 = true;
-        this.col2 = false;
-        this.col4 = false;
-        this.col6 = false;
-        this.listview = false;
-      },
-      grid4() {
-        this.col4 = true;
-        this.col2 = false;
-        this.col3 = false;
-        this.col6 = false;
-        this.listview = false;
-      },
-      grid6() {
-        this.col6 = true;
-        this.col2 = false;
-        this.col3 = false;
-        this.col4 = false;
-        this.listview = false;
-      },
-      removeTags(val) {
-        this.allfilters.splice(this.allfilters.indexOf(val), 1);
-      },
-      removeAllTags() {
-        this.allfilters.splice(0, this.allfilters.length);
-      },
-      getCategoryFilter() {
-        this.updatePaginate(1);
-        this.$store.dispatch("filter/getCategoryFilter", this.$route.params.id);
-      },
-      allfilter(selectedVal) {
-        this.allfilters = selectedVal;
-        this.$store.dispatch("filter/setTags", selectedVal);
-        this.getPaginate();
-        this.updatePaginate(1);
-      },
-      pricefilterArray(item) {
-        this.getCategoryFilter();
-        this.$store.dispatch("filter/priceFilter", item);
-        this.getPaginate();
-        this.updatePaginate(1);
-      },
-      getPaginate() {
-        this.paginates = Math.round(this.filterProduct.length / this.paginate);
-        this.pages = [];
-        for (let i = 0; i < this.paginates; i++) {
-          this.pages.push(i + 1);
-        }
-      },
-      setPaginate(i) {
-        if (this.current === 1) {
-          return i < this.paginate;
-        } else {
-          return (
-            i >= this.paginate * (this.current - 1) &&
-            i < this.current * this.paginate
-          );
-        }
-      },
-      updatePaginate(i) {
-        this.current = i;
-        let start = 0;
-        let end = 0;
-        if (this.current < this.paginateRange - 1) {
-          start = 1;
-          end = start + this.paginateRange - 1;
-        } else {
-          start = this.current - 1;
-          end = this.current + 1;
-        }
-        if (start < 1) {
-          start = 1;
-        }
-        if (end > this.paginates) {
-          end = this.paginates;
-        }
-        this.pages = [];
-        for (let i = start; i <= end; i++) {
-          this.pages.push(i);
-        }
-        return this.pages;
+    pricefilterArray(item) {
+      this.getCategoryFilter();
+      this.$store.dispatch("filter/priceFilter", item);
+      this.getPaginate();
+      this.updatePaginate(1);
+    },
+    getPaginate() {
+      this.paginates = Math.round(this.filterProduct.length / this.paginate);
+      this.pages = [];
+      for (let i = 0; i < this.paginates; i++) {
+        this.pages.push(i + 1);
       }
+    },
+    setPaginate(i) {
+      if (this.current === 1) {
+        return i < this.paginate;
+      } else {
+        return (
+          i >= this.paginate * (this.current - 1) &&
+          i < this.current * this.paginate
+        );
+      }
+    },
+    updatePaginate(i) {
+      this.current = i;
+      let start = 0;
+      let end = 0;
+      if (this.current < this.paginateRange - 1) {
+        start = 1;
+        end = start + this.paginateRange - 1;
+      } else {
+        start = this.current - 1;
+        end = this.current + 1;
+      }
+      if (start < 1) {
+        start = 1;
+      }
+      if (end > this.paginates) {
+        end = this.paginates;
+      }
+      this.pages = [];
+      for (let i = start; i <= end; i++) {
+        this.pages.push(i);
+      }
+      return this.pages;
     }
-  };
+  }
+};
 </script>
