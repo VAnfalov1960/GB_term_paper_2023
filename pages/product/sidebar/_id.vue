@@ -50,6 +50,97 @@
                       </div>
                       <p>(Идентификационный номер: {{ getDetail.id }})</p>
                       <br />
+                      <!-- Ссылка на сайт -->
+                      <div v-if="getDetail.price">
+                        <a
+                          v-if="getDetail.src"
+                          :href="getDetail.src"
+                          target="_blank"
+                          class="btn btn-solid mr-3"
+                          style="border: 1px solid white; border-radius: 40px; width: 40%"
+                        >Сайт</a>
+                        <a
+                          v-if="getDetail.moodle_src"
+                          :href="getDetail.moodle_src"
+                          target="_blank"
+                          class="btn btn-solid mr-3"
+                          style="border: 1px solid white; border-radius: 40px; width: 40%"
+                        >Moodle</a>
+                        <br v-if="getDetail.moodle_src" />
+                        <br v-if="getDetail.moodle_src" />
+                        <!-- Ссылка  -->
+                        <a
+                          v-if="getDetail.demo1_src"
+                          :href="getDetail.demo1_src"
+                          target="_blank"
+                          class="btn btn-solid mr-3"
+                          style="border: 1px solid white; border-radius: 40px; width: 40%"
+                        >Frontend</a>
+                        <br v-if="getDetail.demo1_src" />
+                        <br v-if="getDetail.demo1_src" />
+                        <!-- Ссылка  -->
+                        <a
+                          v-if="getDetail.demo2_src"
+                          :href="getDetail.demo2_src"
+                          target="_blank"
+                          class="btn btn-solid mr-3"
+                          style="border: 1px solid white; border-radius: 40px; width: 40%"
+                        >Backend</a>
+                        <br v-if="getDetail.demo2_src" />
+                        <!-- Загрузка pdf -->
+                        <!-- Ниже для дипломов из папки -->
+                        <!-- :href="require(`@/assets/images/diploma/${getDetail.id}.jpg`)" -->
+                        <a
+                          v-if="getDetail.diploma_src"
+                          target="_blank"
+                          :href="getDetail.diploma_src"
+                          class="btn btn-solid mr-3"
+                          style="border: 1px solid white; border-radius: 40px; width: 40%"
+                        >Диплом</a>
+                        <br v-if="getDetail.diploma_src" />
+                        <br v-if="getDetail.diploma_src" />
+                        <!-- Загрузка pdf -->
+                        <a
+                          v-if="getDetail.identity_card_src"
+                          target="_blank"
+                          :href="require(`@/assets/images/diploma/${getDetail.id}.jpg`)"
+                          class="btn btn-solid mr-3"
+                          style="border: 1px solid white; border-radius: 40px; width: 40%"
+                        >Документ</a>
+
+                        <!-- <a
+                          v-if="getDetail.identity_card_src"
+                          :href="getDetail.identity_card_src"
+                          download
+                          target="_blank"
+                          class="btn btn-solid mr-3"
+                          style="border: 1px solid white; border-radius: 40px; width: 40%"
+                        >Документ</a>-->
+                        <br v-if="getDetail.identity_card_src" />
+                        <br v-if="getDetail.identity_card_src" />
+                        <!-- Загрузка картинки -->
+                        <!-- РАЗОБРАТЬ!!! https://github.com/geeogi/nuxt-responsive-loader -->
+                        <a
+                          v-if="getDetail.certificate"
+                          target="_blank"
+                          :href="require(`@/assets/images/certificate/${getDetail.id}.jpg`)"
+                          class="btn btn-solid mr-3"
+                          style="border: 1px solid white; border-radius: 40px; width: 40%"
+                        >Сертификат</a>
+                        <!-- Загрузка pdf -->
+                        <a
+                          v-if="getDetail.license_src"
+                          :href="getDetail.license_src"
+                          download
+                          target="_blank"
+                          class="btn btn-solid mr-3"
+                          style="border: 1px solid white; border-radius: 40px; width: 40%"
+                        >Лицензия</a>
+                        <br v-if="getDetail.license_src" />
+                        <br v-if="getDetail.license_src" />
+                      </div>
+                      <br />
+
                       <div v-if="getDetail.price > 0">
                         <h4>Актуальные цены уточняйте на официальном сайте</h4>
                         <h4
@@ -90,11 +181,11 @@
                         </div>
                         <div class="pro_inventory" v-if="getDetail.allstudents">
                           <p
-                            v-if="((getDetail.stock - counter) > 30)"
+                            v-if="(getDetail.stock - counter) > 10"
                             class="active"
                           >Осталось более 10 свободных мест</p>
                           <p
-                            v-if="((getDetail.stock - counter) >= 5) && ((getDetail.stock - counter) <= 10)"
+                            v-if="(((getDetail.stock - counter) >= 5) && ((getDetail.stock - counter) <= 10))"
                             class="active"
                             style="color: green"
                           >Осталось {{getDetail.stock - counter}} свободных мест</p>
@@ -293,36 +384,6 @@
                         <p v-if="getDetail.description35">{{getDetail.description35}}</p>
                         <br v-if="getDetail.description35" />
                         <p v-if="getDetail.description36">{{getDetail.description36}}</p>
-                        <!-- <div class="single-product-tables">
-                            <table>
-                              <tbody>
-                                <tr>
-                                  <td>111</td>
-                                  <td>222</td>
-                                </tr>5
-                                <tr>
-                                  <td>333</td>
-                                  <td>444</td>
-                                </tr>
-                                <tr>
-                                  <td>555</td>
-                                  <td>666</td>
-                                </tr>
-                              </tbody>
-                            </table>
-                            <table>
-                              <tbody>
-                                <tr>
-                                  <td>Длина</td>
-                                  <td>50 Дюймов</td>
-                                </tr>
-                                <tr>
-                                  <td>Размер</td>
-                                  <td>S, M, L .XXL</td>
-                                </tr>
-                              </tbody>
-                            </table>
-                        </div>-->
                       </b-tab>
                       <b-tab title="Видео">
                         <b-card-text>
@@ -336,29 +397,6 @@
                               scrolling="no"
                               allowfullscreen
                             ></iframe>
-                            <!-- Youtube Embed -->
-                            <!-- Легко встраивайте проигрыватель YouTube или Vimeo и лениво загружайте видео, чтобы сэкономить ресурсы и уменьшить первоначальный размер загрузки. Полезно, когда важна производительность и размер страницы или для сайтов с большим количеством встроенных видео. -->
-                            <!-- https://github.com/seeratawan01/vue-lazytube -->
-                            <!-- РАБОТАЕТ!!! ЗАДАЮТСЯ РАЗМЕРЫ, РАБОТАЮТ КНОПКИ!!! -->
-                            <!-- <LazyYoutube
-                              v-if="getDetail.video1src"
-                              ref="lazyVideo"
-                              maxWidth="540px"
-                              :src="getDetail.video1src"
-                            />
-                            <br />
-                            <button @click="handleClick('playVideo')">Play</button>
-                            <button @click="handleClick('stopVideo')">Stop</button>
-                            <button @click="handleClick('pauseVideo')">Pause</button>
-                            <button @click="handleClick('resetView')">Reset</button>
-                            <br />
-                            <br />-->
-
-                            <!-- Vimeo Embed -->
-                            <!-- ВСЁ РАБОТАЕТ!!! -->
-                            <!-- <LazyVimeo src="https://player.vimeo.com/video/64654583" /> -->
-
-                            <!-- НИЖЕ РАЗМЕРЫ ОКНА ПРОИГРЫВАТЕЛЯ НЕ ИЗМЕНЯЮТСЯ, НАЙТИ ОШИБКУ!!! -->
                             <!-- ПРОИГРЫВАТЕЛЬ ЗАНИМАЕТ 100%!!! -->
                             <h4 v-if="getDetail.title1src">{{ getDetail.title1src }}</h4>
                             <video-embed
@@ -570,7 +608,6 @@
                                   name="message"
                                 ></textarea>
                               </div>
-                              <!-- Добавить кнопку Очистить -->
                               <div class="col-md-12">
                                 <input
                                   class="btn btn-solid"
@@ -599,42 +636,15 @@
       </div>
       <br />
       <br />
-      <!-- Только педагогам скидка добавить проерку на Инфоурок -->
-      <!-- Ссылки imagepath внизу -->
-      <section v-if="getDetail.brand == 'Инфоурок'" class="section-b-space">
-        <br />
-        <br />
-        <br />
-        <div class="container">
-          <div
-            class="row banner-timer"
-            v-bind:style="{ 'background-image': 'url(' + imagepath2 + ')' }"
-            style="width: 100%; margin-top: -140px"
-          >
-            <div class="col-md-6">
-              <div class="banner-text">
-                <h2 v-html="offer_text"></h2>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       <!-- Сопутствующие товары -->
-      <relatedProduct
-        v-if="getDetail.type == 'курсы'"
-        :productTYpe="productTYpe"
-        :productId="productId"
-      />
-      <!-- Размер одежды... -->
-      <!-- <b-modal id="modal-1" size="md" centered hide-footer>
-        <template v-slot:modal-title>{{getDetail.title}}</template>
-        <img src="../../../assets/images/size-chart.jpg" alt="size-chart" class="img-fluid" />
-      </b-modal>-->
+      <!-- <relatedProduct v-if="getDetail.type == 'курсы'" :productTYpe="productTYpe" :productId="productId" /> -->
     </section>
     <Footer />
   </div>
 </template>
+
 <script src="./vue-lazytube.umd.min.js"></script>
+
 <script>
 import Vue from "vue";
 import Embed from "v-video-embed";
@@ -642,7 +652,6 @@ import { mapState, mapGetters } from "vuex";
 import Footer from "../../../components/footer/footer";
 import Breadcrumbs from "../../../components/widgets/breadcrumbs";
 import relatedProduct from "../../../components/widgets/related-products";
-import LazyTube from "vue-lazytube";
 
 Vue.use(Embed);
 

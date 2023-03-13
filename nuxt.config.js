@@ -1,6 +1,6 @@
 export default {
     ssr: false,
-    subdirectory: "/gb4-4/",
+    subdirectory: "/gb4-5/",
     head: {
         title: "gb_курсовая",
         htmlAttrs: {
@@ -14,7 +14,7 @@ export default {
         link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
     router: {
-        base: "/gb4-4/",
+        base: "/gb4-5/",
     },
     loading: { color: "#ff4c3b", throttle: 200, height: "3px", css: true },
     /*

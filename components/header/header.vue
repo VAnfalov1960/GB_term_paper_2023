@@ -2,6 +2,7 @@
   <div>
     <header>
       <div class="mobile-fix-option"></div>
+      <TopBar />
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
@@ -41,6 +42,7 @@
 </template>
 <script>
 import Nav from "../widgets/navbar";
+import TopBar from "../widgets/topbar";
 import HeaderWidgets from "../widgets/header-widgets";
 import LeftSidebar from "../widgets/left-sidebar";
 export default {
@@ -51,6 +53,7 @@ export default {
   },
   components: {
     Nav,
+    TopBar,
     HeaderWidgets,
     LeftSidebar
   },
