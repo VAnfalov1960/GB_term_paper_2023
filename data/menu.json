@@ -38,6 +38,7 @@
                         { "path": "/page/account/forget-password", "title": "Забыли пароль", "type": "link" }
                     ]
                 },
+                { "path": "/page/search", "title": "Поиск", "type": "link" },
                 { "path": "/page/account/cart", "title": "Корзина", "type": "link" },
                 { "path": "/page/account/checkout", "title": "Оплата", "type": "link" },
                 { "path": "/page/404", "title": "404", "type": "link" }

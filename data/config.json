@@ -1,8 +1,7 @@
 {
-  "config": {
-    "layout_type": "ltr",
-    "layout_version": "light",
-    "color": "#04b919"
-  }
+    "config": {
+        "layout_type": "ltr",
+        "layout_version": "light",
+        "color": "#04b919"
+    }
 }
-
