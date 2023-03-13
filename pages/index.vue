@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Стартовая страница</h1>
+    <h1>Спринт 4</h1>
     <CollectionBanner />
     <br />
     <Slider />
